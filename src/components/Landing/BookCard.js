@@ -3,7 +3,6 @@ import React from "react";
 import { bookData } from "../../Data";
 
 const BookCard = (props) => {
-  console.log(bookData);
   return (
     <div className="columns">
       {bookData.map((book) => {
@@ -12,10 +11,7 @@ const BookCard = (props) => {
             <div className="card">
               <div className="card-image">
                 <figure className="image 5by4">
-                  <img
-                    src="../../assets/images/alchemist.jpeg"
-                    alt={book.title}
-                  />
+                  <img src={book.image} alt={book.title} />
                 </figure>
               </div>
               <div className="card-content">
