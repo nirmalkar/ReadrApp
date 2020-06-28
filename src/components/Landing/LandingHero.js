@@ -1,6 +1,7 @@
 import React from "react";
 import propTypes from "prop-types";
 import { useHistory, Link } from "react-router-dom";
+
 import BookCard from "./BookCard";
 
 const LandingHero = (props) => {
@@ -58,11 +59,8 @@ const LandingHero = (props) => {
               </div>
             </div>
           </div>
-          <div className="columns">
-            <div className="column is-3">
-              <BookCard />
-            </div>
-          </div>
+          <div className="title mt-6">Popular</div>
+          <BookCard />
         </div>
       </div>
     </section>
