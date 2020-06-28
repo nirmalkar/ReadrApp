@@ -1,0 +1,7 @@
+$cursors: (pointer, not-allowed, none);
+
+@each $cursor in $cursors {
+  .has-cursor-#{$cursor} {
+    cursor: $cursor;
+  }
+}
