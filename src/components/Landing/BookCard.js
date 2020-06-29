@@ -18,14 +18,24 @@ const BookCard = (props) => {
               <p className="subtitle">{props.book.description}</p>
             </div>
           </Link>
-          <footer className="card-footer">
-            <a href="#" className="card-footer-item">
-              Edit
-            </a>
-            <a href="#" className="card-footer-item">
-              Delete
-            </a>
-          </footer>
+          {props.landing ? (
+            ""
+          ) : (
+            <footer className="card-footer">
+              <button href="#" className="card-footer-item button">
+                <span className="icon">
+                  <i className="fas fa-pencil-alt"></i>
+                </span>
+                <span>Edit</span>
+              </button>
+              <button href="#" className="card-footer-item button">
+                <span className="icon">
+                  <i className="fas fa-trash"></i>
+                </span>
+                <span>Delete</span>
+              </button>
+            </footer>
+          )}
         </div>
       ) : (
         ""
@@ -41,6 +51,7 @@ BookCard.propTypes = {
     description: propTypes.string.isRequired,
     id: propTypes.number.isRequired,
   }),
+  landing: propTypes.bool.isRequired,
 };
 
 export default BookCard;
