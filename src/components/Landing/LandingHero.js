@@ -1,6 +1,7 @@
 import React from "react";
 import propTypes from "prop-types";
 import { useHistory, Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import BookCard from "./BookCard";
 
@@ -9,12 +10,14 @@ const LandingHero = (props) => {
   const toLibrary = () => {
     history.push("/collection");
   };
+  const bookList = useSelector((state) => state.bookList);
+  const { books } = bookList;
   return (
     <section className="hero is-medium">
       <div className="hero-head">
         <div className="navbar">
           <div className="navbar-brand is-size-3">
-            <Link to="/" class="navbar-item">
+            <Link to="/" className="navbar-item">
               <span className="has-text-weight-bold">R</span>
               <span className="has-text-weight-light">eadr</span>
             </Link>
@@ -43,16 +46,13 @@ const LandingHero = (props) => {
               <div className="field has-addons">
                 <p className="control is-expanded">
                   <input
-                    className="input is-medium"
+                    className="input"
                     type="text"
                     placeholder="Find something to read"
                   />
                 </p>
                 <p className="control">
-                  <button
-                    onClick={toLibrary}
-                    className="button is-black is-medium"
-                  >
+                  <button onClick={toLibrary} className="button is-black">
                     Search
                   </button>
                 </p>
@@ -60,7 +60,11 @@ const LandingHero = (props) => {
             </div>
           </div>
           <div className="title mt-6">Popular</div>
-          <BookCard />
+          <div className="columns is-multiline">
+            {books.map((book, i) => {
+              return <BookCard landing book={book} key={i} />;
+            })}
+          </div>
         </div>
       </div>
     </section>
