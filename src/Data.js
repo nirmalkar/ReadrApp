@@ -1,6 +1,8 @@
 export const bookData = [
   {
     id: 1,
+    isbn: "978-3-16-148410-0",
+    file: { name: "The Alchemist" },
     title: "The Alchemist",
     preface: `Understanding the meaning of a sign is the objective of semiotic analysis. But
     what does it mean to mean? Communication does not consist of the transmission of
@@ -3874,6 +3876,8 @@ export const bookData = [
   },
   {
     id: 2,
+    isbn: "978-3-16-148410-0",
+    file: { name: "The Alchemist" },
     title: "The Alchemist",
     preface: "asfasdf",
     image: "https://i.harperapps.com/covers/9780062390622/x510.jpg",
@@ -3884,6 +3888,8 @@ export const bookData = [
   },
   {
     id: 3,
+    isbn: "978-3-16-148410-0",
+    file: { name: "The Alchemist" },
     title: "The Alchemist",
     preface: "asfasdf",
     image: "https://i.harperapps.com/covers/9780062390622/x510.jpg",
@@ -3894,6 +3900,8 @@ export const bookData = [
   },
   {
     id: 4,
+    isbn: "978-3-16-148410-0",
+    file: { name: "The Alchemist" },
     title: "The Alchemist",
     preface: "asfasdf",
     image: "https://i.harperapps.com/covers/9780062390622/x510.jpg",
