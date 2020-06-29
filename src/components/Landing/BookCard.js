@@ -1,8 +1,19 @@
 import React from "react";
 import propTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+import { deleteBook } from "../../appRedux/action/bookAction";
 
 const BookCard = (props) => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const handleDeleteBook = (id) => {
+    dispatch(deleteBook(id));
+  };
+  const editBook = (id) => {
+    history.push(`/addbook/${props.book.id}`);
+  };
   return (
     <div className="column is-3">
       {props.book ? (
@@ -22,13 +33,19 @@ const BookCard = (props) => {
             ""
           ) : (
             <footer className="card-footer">
-              <button href="#" className="card-footer-item button">
+              <button
+                onClick={() => editBook(props.book.id)}
+                className="card-footer-item button"
+              >
                 <span className="icon">
                   <i className="fas fa-pencil-alt"></i>
                 </span>
                 <span>Edit</span>
               </button>
-              <button href="#" className="card-footer-item button">
+              <button
+                onClick={() => handleDeleteBook(props.book.id)}
+                className="card-footer-item button"
+              >
                 <span className="icon">
                   <i className="fas fa-trash"></i>
                 </span>
