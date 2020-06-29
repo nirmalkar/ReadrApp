@@ -28,6 +28,10 @@ const LandingHero = (props) => {
                 <i className="fas fa-user-circle fa-lg mr-2" />
                 Profile
               </Link>
+              <Link to="books" className="navbar-item" href="#">
+                <i className="fas fa-book-reader fa-lg mr-2" />
+                See All Books
+              </Link>
               <Link to="addbook" className="navbar-item" href="#">
                 <i className="fas fa-book-open fa-lg mr-2" />
                 Add Book
