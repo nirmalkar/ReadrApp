@@ -1,15 +1,12 @@
 import React from "react";
 import propTypes from "prop-types";
-import { useHistory, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import BookCard from "./BookCard";
+import SearchBar from "../searchBar";
 
 const LandingHero = (props) => {
-  const history = useHistory();
-  const toLibrary = () => {
-    history.push("/collection");
-  };
   const bookList = useSelector((state) => state.bookList);
   const { books } = bookList;
   return (
@@ -46,21 +43,7 @@ const LandingHero = (props) => {
           <h2 className="subtitle">A new way to read content on the go.</h2>
           <div className="columns is-centered">
             <div className="column is-5">
-              {/* <div className="field is-grouped"> */}
-              <div className="field has-addons">
-                <p className="control is-expanded">
-                  <input
-                    className="input"
-                    type="text"
-                    placeholder="Find something to read"
-                  />
-                </p>
-                <p className="control">
-                  <button onClick={toLibrary} className="button is-black">
-                    Search
-                  </button>
-                </p>
-              </div>
+              <SearchBar />
             </div>
           </div>
           <div className="title mt-6">Popular</div>
