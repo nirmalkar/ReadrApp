@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
+import propTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import { v4 as uuid } from "uuid";
-import propTypes from "prop-types";
+import Editor from "../components/editor";
 
 import { saveBook, updateBook } from "../appRedux/action/bookAction";
 const AddBook = (props) => {
@@ -131,14 +132,7 @@ const AddBook = (props) => {
                       <div className="field">
                         <label className="label">Book Content</label>
                         <div className="control">
-                          <textarea
-                            required
-                            rows="6"
-                            className="textarea"
-                            placeholder="Write Book Description here"
-                            value={bookContent}
-                            onChange={(e) => setBookContent(e.target.value)}
-                          />
+                          <Editor setBookContent={setBookContent} />
                         </div>
                       </div>
                       <div className="field">
