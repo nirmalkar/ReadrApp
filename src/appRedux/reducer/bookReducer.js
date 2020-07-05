@@ -23,10 +23,3 @@ function bookListReducer(state = { books: bookData }, action) {
   }
 }
 export { bookListReducer };
-
-// state.books.map((book) => {
-//   if (book.id === action.payload.id) {
-//     book = action.payload;
-//   }
-//   return book;
-// });
