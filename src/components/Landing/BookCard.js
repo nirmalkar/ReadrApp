@@ -8,6 +8,7 @@ import { deleteBook } from "../../appRedux/action/bookAction";
 const BookCard = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
+
   const handleDeleteBook = (id) => {
     dispatch(deleteBook(id));
   };
@@ -20,7 +21,7 @@ const BookCard = (props) => {
         <div className="card mt-6">
           <Link to={`/book/${props.book.id}`}>
             <div className="card-image">
-              <figure className="image 5by4">
+              <figure className="image is-square">
                 <img src={props.book.image} alt={props.book.title} />
               </figure>
             </div>
