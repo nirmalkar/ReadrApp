@@ -27,6 +27,7 @@ export const bookData = [
     quest—both in the Bible and The Alchemist—makes this thesis comprehensive.`,
     image: "https://i.harperapps.com/covers/9780062390622/x510.jpg",
     bookContent: `The boy's name wasSantiago . Dusk was falling as the boy arrived with his herd at an abandoned 
+    isBookTypePdf:false,
     church. The roof had fallen in long ago, and an enormous sycamore had grown on the spot where the 
     sacristy had once stood. 
     
@@ -3877,37 +3878,44 @@ export const bookData = [
   {
     id: 2,
     isbn: "978-3-16-148410-0",
-    file: { name: "The Alchemist" },
-    title: "The Alchemist",
+    file: { name: "THE ARTIST’S WAY" },
+    title: "THE ARTIST’S WAY",
     preface: "asfasdf",
-    image: "https://i.harperapps.com/covers/9780062390622/x510.jpg",
+    image:
+      "https://lh3.googleusercontent.com/proxy/m2oZDvwAsRG1Xe1bPV_HdOoezbvZwV6G0DbQNdvTkuprnqaMIX3hGdnc7-KTDso_Ji7YT1GNPr8rgebZoCo-mHGFhzdu-6R-goRDpOcErojzC9da-QYLJyt3_9Yr8_w-h7vvcmVgTO-WCg",
     bookContent: "asjkdfjasldjflk",
+    isBookTypePdf: false,
     description:
-      "This book is all about tour and travel. This book gives idea about what one should do and what one should not while travelling to the world",
+      "Essentially a self-help workbook on creativity, this life-changing book coaxes readers along a spiritual, artistic path. With tasks to complete at the end of each chapter, reading this book is a dynamic affair.",
     stars: 5,
   },
   {
     id: 3,
     isbn: "978-3-16-148410-0",
-    file: { name: "The Alchemist" },
-    title: "The Alchemist",
+    file: { name: "LIFE OF PI" },
+    title: "LIFE OF PI",
     preface: "asfasdf",
-    image: "https://i.harperapps.com/covers/9780062390622/x510.jpg",
+    image: "https://m.media-amazon.com/images/I/51JAnJWnbkL.jpg",
     bookContent: "asjkdfjasldjflk",
-    description:
-      "This book is all about tour and travel. This book gives idea about what one should do and what one should not while travelling to the world",
+    isBookTypePdf: false,
+    description: `Pi Patel is the son of a zookeeper, with an encyclopedic knowledge of animals 
+    and a taste for philosophy. While immigrating to North America from India with his family, 
+    their ship sinks - and Pi finds himself alone in a lifeboat with a hyena, an orangutan, 
+    a wounded zebra, and Richard Parker, a 450-pound Bengal tiger - or does he? What follows is 
+    a fantastical tale of intrigue and adventure.`,
     stars: 5,
   },
   {
     id: 4,
     isbn: "978-3-16-148410-0",
-    file: { name: "The Alchemist" },
-    title: "The Alchemist",
+    file: { name: "THE ROAD LESS TRAVELED" },
+    title: "THE ROAD LESS TRAVELED",
     preface: "asfasdf",
     image: "https://i.harperapps.com/covers/9780062390622/x510.jpg",
     bookContent: "asjkdfjasldjflk",
+    isBookTypePdf: false,
     description:
-      "This book is all about tour and travel. This book gives idea about what one should do and what one should not while travelling to the world",
+      "A cross of psychology and spirituality, this non-fiction book is packed with insight and wisdom about the attributes that make for a fulfilled person. With an eloquent examination of complex, human concepts such as discipline and love, Peck theorizes four distinct stages of human spiritual development along the path to self-realization.",
     stars: 5,
   },
 ];
