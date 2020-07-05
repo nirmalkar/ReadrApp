@@ -6,7 +6,10 @@ import propTypes from "prop-types";
 
 import { saveBook, updateBook } from "../appRedux/action/bookAction";
 const AddBook = (props) => {
-  const id = JSON.parse(props.location.pathname.slice(9));
+  const id =
+    props.location.pathname.length > 9
+      ? JSON.parse(props.location.pathname.slice(9))
+      : "";
   const [title, setTitle] = useState("");
   const [bookContent, setBookContent] = useState("");
   const [description, setDescription] = useState("");
