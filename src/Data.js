@@ -3881,8 +3881,7 @@ export const bookData = [
     file: { name: "THE ARTIST’S WAY" },
     title: "THE ARTIST’S WAY",
     preface: "asfasdf",
-    image:
-      "https://lh3.googleusercontent.com/proxy/m2oZDvwAsRG1Xe1bPV_HdOoezbvZwV6G0DbQNdvTkuprnqaMIX3hGdnc7-KTDso_Ji7YT1GNPr8rgebZoCo-mHGFhzdu-6R-goRDpOcErojzC9da-QYLJyt3_9Yr8_w-h7vvcmVgTO-WCg",
+    image: "https://images-na.ssl-images-amazon.com/images/I/817OvOnBAtL.jpg",
     bookContent: "asjkdfjasldjflk",
     isBookTypePdf: false,
     description:
@@ -3911,7 +3910,8 @@ export const bookData = [
     file: { name: "THE ROAD LESS TRAVELED" },
     title: "THE ROAD LESS TRAVELED",
     preface: "asfasdf",
-    image: "https://i.harperapps.com/covers/9780062390622/x510.jpg",
+    image:
+      "https://images-na.ssl-images-amazon.com/images/I/514Nnz1R25L._SX326_BO1,204,203,200_.jpg",
     bookContent: "asjkdfjasldjflk",
     isBookTypePdf: false,
     description:
