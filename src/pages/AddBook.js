@@ -6,6 +6,7 @@ import { v4 as uuid } from "uuid";
 import Editor from "../components/editor";
 
 import { saveBook, updateBook } from "../appRedux/action/bookAction";
+import { useToggleState } from "../hooks/useToggleState";
 import { initialBookState } from "./util.js";
 
 const AddBook = (props) => {
@@ -16,7 +17,9 @@ const AddBook = (props) => {
   const [input, setInput] = useState(initialBookState);
   const [bookContent, setBookContent] = useState("");
   const [image, setImage] = useState("");
-  const [file, setFile] = useState(null);
+  const [imgFile, setImgFile] = useState(null);
+  const [pdfFile, setPdfFile] = useState(null);
+  const [isPdf, setIsPdf] = useToggleState(false);
 
   const dispatch = useDispatch();
   const { books } = useSelector((state) => state.bookList);
@@ -31,7 +34,7 @@ const AddBook = (props) => {
         isbn: book.isbn,
       });
       setImage(book.image);
-      setFile(book.file);
+      setImgFile(book.imgFile);
     }
   }, []);
 
@@ -47,7 +50,7 @@ const AddBook = (props) => {
           id: id,
           ...input,
           image,
-          file,
+          imgFile,
         })
       );
     } else {
@@ -56,7 +59,7 @@ const AddBook = (props) => {
           id: uuid(),
           ...input,
           image,
-          file,
+          imgFile,
         })
       );
     }
@@ -64,13 +67,17 @@ const AddBook = (props) => {
     setInput(initialBookState);
     setBookContent("");
     setImage("");
-    setFile(null);
+    setImgFile(null);
   };
-  const imageSet = (e) => {
-    if (e.target.files && e.target.files[0]) {
+  const setFile = (e) => {
+    const name = e.target.name;
+    if (name === "image" && e.target.files && e.target.files[0]) {
       const img = e.target.files[0];
-      setFile(img);
+      setImgFile(img);
       setImage(URL.createObjectURL(img));
+    } else {
+      const pdf = e.target.files[0];
+      setPdfFile(pdf);
     }
   };
   const handleInputChange = (e) => {
@@ -81,7 +88,7 @@ const AddBook = (props) => {
   };
   return (
     <section className="hero is-fullheight">
-      <ToastContainer />
+      <ToastContainer autoClose={2000} position="top-center" />
       <div className="hero-head">
         <div className="buttons mt-2 mr-2 is-right">
           <button
@@ -135,14 +142,47 @@ const AddBook = (props) => {
                         </div>
                       </div>
                       <div className="field">
-                        <label className="label">Book Content</label>
-                        <div className="control">
-                          <Editor
-                            bookContent={bookContent}
-                            setBookContent={setBookContent}
+                        <label className="label"> Use PDF</label>
+                        <label className="switch">
+                          <input
+                            onChange={(e) => setIsPdf(isPdf)}
+                            type="checkbox"
                           />
-                        </div>
+                          <span className="slider round"></span>
+                        </label>
                       </div>
+                      {isPdf ? (
+                        <div className="file has-name is-boxed">
+                          <label className="file-label">
+                            <input
+                              className="file-input"
+                              required
+                              type="file"
+                              name="pdfFile"
+                              onChange={(e) => setFile(e)}
+                            />
+                            <span className="file-cta">
+                              <span className="file-icon">
+                                <i className="fas fa-upload"></i>
+                              </span>
+                              <span className="file-label">Choose a file…</span>
+                            </span>
+                            <span className="file-name">
+                              {pdfFile ? pdfFile.name : ""}
+                            </span>
+                          </label>
+                        </div>
+                      ) : (
+                        <div className="field">
+                          <label className="label">Book Content</label>
+                          <div className="control">
+                            <Editor
+                              bookContent={bookContent}
+                              setBookContent={setBookContent}
+                            />
+                          </div>
+                        </div>
+                      )}
                       <div className="field">
                         <label className="label">ISBN</label>
                         <div className="control">
@@ -168,7 +208,7 @@ const AddBook = (props) => {
                                 type="file"
                                 name="image"
                                 accept="image/*"
-                                onChange={(e) => imageSet(e)}
+                                onChange={(e) => setFile(e)}
                               />
                               <img
                                 className="mb-2"
@@ -188,7 +228,7 @@ const AddBook = (props) => {
                                 </span>
                               </span>
                               <span className="file-name">
-                                {file ? file.name : ""}
+                                {imgFile ? imgFile.name : ""}
                               </span>
                             </label>
                           </div>
