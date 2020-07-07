@@ -17,46 +17,51 @@ const BookCard = (props) => {
   };
   return (
     <div className="column is-3">
-      {props.book ? (
+      {props.book && (
         <div className="card mt-6">
-          <Link to={`/book/${props.book.id}`}>
-            <div className="card-image">
-              <figure className="image is-square">
-                <img src={props.book.image} alt={props.book.title} />
-              </figure>
-            </div>
-            <div className="card-content">
-              <p className="title ">{props.book.title}</p>
-              <p className="subtitle">{props.book.description}</p>
-            </div>
-          </Link>
-          {props.landing ? (
-            ""
-          ) : (
-            <footer className="card-footer">
-              <button
+          <div className="card-image">
+            <figure className="image is-square">
+              <img src={props.book.image} alt={props.book.title} />
+            </figure>
+          </div>
+          <div className="card-content">
+            <Link to={`/book/${props.book.id}`}>
+              <div
+                className="is-size-4 has-text-dark ellipsis is-ellipsis-1"
+                alt={props.book.title}
+              >
+                {props.book.title}
+              </div>
+              <div style={{ height: "70px" }}>
+                <div className=" subtitle  ellipsis is-ellipsis-3">
+                  {props.book.description}
+                </div>
+              </div>
+            </Link>
+          </div>
+          {!props.landing && (
+            <div className="card-footer">
+              <div
+                className="card-footer-item"
                 onClick={() => editBook(props.book.id)}
-                className="card-footer-item button"
               >
                 <span className="icon">
                   <i className="fas fa-pencil-alt"></i>
                 </span>
                 <span>Edit</span>
-              </button>
-              <button
+              </div>
+              <div
+                className="card-footer-item"
                 onClick={() => handleDeleteBook(props.book.id)}
-                className="card-footer-item button"
               >
                 <span className="icon">
                   <i className="fas fa-trash"></i>
                 </span>
                 <span>Delete</span>
-              </button>
-            </footer>
+              </div>
+            </div>
           )}
         </div>
-      ) : (
-        ""
       )}
     </div>
   );
