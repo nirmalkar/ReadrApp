@@ -6,15 +6,15 @@ import { v4 as uuid } from "uuid";
 import Editor from "../components/editor";
 
 import { saveBook, updateBook } from "../appRedux/action/bookAction";
+import { initialBookState } from "./util.js";
+
 const AddBook = (props) => {
   const id =
     props.location.pathname.length > 9
       ? JSON.parse(props.location.pathname.slice(9))
       : "";
-  const [title, setTitle] = useState("");
+  const [input, setInput] = useState(initialBookState);
   const [bookContent, setBookContent] = useState("");
-  const [description, setDescription] = useState("");
-  const [isbn, setIsbn] = useState("");
   const [image, setImage] = useState("");
   const [file, setFile] = useState(null);
 
@@ -24,10 +24,12 @@ const AddBook = (props) => {
   useEffect(() => {
     if (id) {
       const book = books.filter((book) => book.id === id)[0];
-      setTitle(book.title);
-      setBookContent(book.bookContent);
-      setDescription(book.description);
-      setIsbn(book.isbn);
+      setInput({
+        title: book.title,
+        bookContent: book.bookContent,
+        description: book.description,
+        isbn: book.isbn,
+      });
       setImage(book.image);
       setFile(book.file);
     }
@@ -35,14 +37,15 @@ const AddBook = (props) => {
 
   const addBookHandler = (e) => {
     e.preventDefault();
+    if (!bookContent) {
+      toast.info("Please fill the book content");
+      return;
+    }
     if (id) {
       dispatch(
         updateBook({
           id: id,
-          title,
-          bookContent,
-          description,
-          isbn,
+          ...input,
           image,
           file,
         })
@@ -51,20 +54,15 @@ const AddBook = (props) => {
       dispatch(
         saveBook({
           id: uuid(),
-          title,
-          bookContent,
-          description,
-          isbn,
+          ...input,
           image,
           file,
         })
       );
     }
     toast.success("Book added successfully!");
-    setTitle("");
+    setInput(initialBookState);
     setBookContent("");
-    setDescription("");
-    setIsbn("");
     setImage("");
     setFile(null);
   };
@@ -74,6 +72,12 @@ const AddBook = (props) => {
       setFile(img);
       setImage(URL.createObjectURL(img));
     }
+  };
+  const handleInputChange = (e) => {
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value,
+    });
   };
   return (
     <section className="hero is-fullheight">
@@ -107,11 +111,11 @@ const AddBook = (props) => {
                         <div className="control">
                           <input
                             required
-                            name="name"
+                            name="title"
                             className="input"
                             type="text"
-                            value={title}
-                            onChange={(e) => setTitle(e.target.value)}
+                            value={input.title}
+                            onChange={(e) => handleInputChange(e)}
                             placeholder="Book Name"
                           />
                         </div>
@@ -121,18 +125,22 @@ const AddBook = (props) => {
                         <div className="control">
                           <textarea
                             required
+                            name="description"
                             className="textarea"
                             rows="2"
                             placeholder="Write Book Description here"
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)}
+                            value={input.description}
+                            onChange={(e) => handleInputChange(e)}
                           />
                         </div>
                       </div>
                       <div className="field">
                         <label className="label">Book Content</label>
                         <div className="control">
-                          <Editor setBookContent={setBookContent} />
+                          <Editor
+                            bookContent={bookContent}
+                            setBookContent={setBookContent}
+                          />
                         </div>
                       </div>
                       <div className="field">
@@ -141,9 +149,10 @@ const AddBook = (props) => {
                           <input
                             required
                             className="input"
+                            name="isbn"
                             type="text"
-                            value={isbn}
-                            onChange={(e) => setIsbn(e.target.value)}
+                            value={input.isbn}
+                            onChange={(e) => handleInputChange(e)}
                             placeholder="Book ISBN"
                           />
                         </div>
