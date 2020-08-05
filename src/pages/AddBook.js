@@ -145,7 +145,11 @@ const AddBook = (props) => {
                         <label className="label"> Use PDF</label>
                         <label className="switch">
                           <input
-                            onChange={(e) => setIsPdf(isPdf)}
+                            onChange={(e) => {
+                              setIsPdf(isPdf);
+                              setBookContent("");
+                              setPdfFile(null);
+                            }}
                             type="checkbox"
                           />
                           <span className="slider round"></span>
